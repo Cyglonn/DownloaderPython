@@ -10,6 +10,10 @@ listeAnimes = []
 forbiddenCarac = [ ':', '/', '\\']
 u.clear()
 
+cookie = {
+    '__cfduid': 'dd86be56bec1453d0dcdb108830a1e4a11562062682'
+}
+
 def removeForb(text):
     res = text
     for carac in forbiddenCarac:
@@ -23,7 +27,7 @@ def mainMenu():
         u.clear()
         print(str(len(listeAnimes)) + ' in list')
         print()
-        result = u.menu(['Add', 'Download', 'Save download datas', 'Load download datas', 'Show dowload datas', 'Quitter'], 'Choix : ')
+        result = u.menu(['Add', 'Download', 'Save download datas', 'Load download datas', 'Show dowload datas', 'Set cookie value', 'Quitter'], 'Choix : ')
 
     if(result == 0):
         back, episodes = searchAnime()
@@ -51,7 +55,7 @@ def mainMenu():
 
 
 def searchAnime():
-    result = s.search(input("anime : "))
+    result = s.search(input("anime : "), cookie)
 
     menu = ['Back']
 
@@ -66,7 +70,7 @@ def searchAnime():
 
     anime = result[choice][1]
     print("| Getting informations about : " + anime)
-    err, episodesPage = a.get_episodes_pages(result[choice][2])
+    err, episodesPage = a.get_episodes_pages(result[choice][2], cookie)
     
     c = 1
     while(c == 1 or c == -1):
@@ -94,7 +98,7 @@ def searchAnime():
     links = []
 
     for i in range(len(episodesPage)):
-        err, link = e.get_reader_link(episodesPage[i])
+        err, link = e.get_reader_link(episodesPage[i], cookie)
         links.append((link, anime, saison, 'Episode ' + str(i)))
 
     u.clear()

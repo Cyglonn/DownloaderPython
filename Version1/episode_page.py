@@ -3,8 +3,8 @@ import requests as r
 
 knownUploaders = ['rapidvideo']
 
-def get_reader_link(url):
-    vl = r.get(url)
+def get_reader_link(url, cookie):
+    vl = r.get(url, cookies=cookie)
 
     sp = bs(vl.text, 'html.parser')
 

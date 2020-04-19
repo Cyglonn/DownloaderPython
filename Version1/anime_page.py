@@ -5,8 +5,9 @@ import requests as r
 
 
 
-def get_episodes_pages(url):
-    vl = r.get(url)
+def get_episodes_pages(url, cookie):
+    
+    vl = r.get(url, cookies=cookie)
 
     sp = bs(vl.text, 'html.parser')
 
