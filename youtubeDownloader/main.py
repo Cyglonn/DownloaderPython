@@ -1,4 +1,5 @@
 import youtubedownloader as d
+import download_manager as dm
 import requests as req
 import os
 
@@ -9,5 +10,6 @@ link = d.download(url)
 
 stream = req.get(link, stream=True)
 print(stream.url)
-os.system("wget " + stream.url)
+dm.downloads.append(stream.url)
+dm.download()
 stream.close()
