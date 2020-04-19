@@ -9,4 +9,5 @@ link = d.download(url)
 
 stream = req.get(link, stream=True)
 print(stream.url)
+os.system("wget " + stream.url)
 stream.close()
